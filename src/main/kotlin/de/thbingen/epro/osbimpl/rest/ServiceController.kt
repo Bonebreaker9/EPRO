@@ -6,6 +6,7 @@ import de.thbingen.epro.osbimpl.model.updateservice.UpdateServiceResponse
 import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpServletResponse
 
+@RestController
 class ServiceController {
 
     @GetMapping("/v2/service_instances/{instance_id}")
