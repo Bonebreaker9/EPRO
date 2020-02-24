@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpServletResponse
 
 @RestController
-class ProvisionController {
+class ProvisionController : BaseController {
 
     @PutMapping("/v2/service_instances/{instance_id}")
     fun provision(@PathVariable("instance_id") instanceId: String,
-                  @RequestParam("accepts_incomplete") acceptsIncomplete: Boolean,
+                  @RequestParam("accepts_incomplete", required = false) acceptsIncomplete: Boolean,
                   @RequestBody provisionBody: ProvisioningRequest,
                   servletResponse: HttpServletResponse): ProvisioningResponse {
         return TODO()
@@ -19,9 +19,9 @@ class ProvisionController {
 
     @DeleteMapping("/v2/service_instances/{instance_id}")
     fun deprovision(@PathVariable("instance_id") instanceId: String,
-                    @RequestParam("accepts_incomplete") acceptsIncomplete: Boolean,
-                    @RequestParam("service_id") serviceId: String,
-                    @RequestParam("plan_id") planId: String,
+                    @RequestParam("accepts_incomplete", required = false) acceptsIncomplete: Boolean,
+                    @RequestParam("service_id", required = false) serviceId: String,
+                    @RequestParam("plan_id", required = false) planId: String,
                     servletResponse: HttpServletResponse): DeprovisioningResponse {
         return TODO()
     }
