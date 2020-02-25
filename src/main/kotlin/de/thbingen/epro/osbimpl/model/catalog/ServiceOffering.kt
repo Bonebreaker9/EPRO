@@ -24,4 +24,26 @@ data class ServiceOffering(
         description.assertIfPresent(String::isNotEmpty)
         plans.assertIfPresent(List<ServicePlan>::isNotEmpty)
     }
+
+    companion object {
+        fun getInstances(): List<ServiceOffering> {
+            val list = mutableListOf<ServiceOffering>()
+            val jpaOffering = ServiceOffering(name = "JPA",
+                    id = UUID.fromString("86aa2765-b782-408a-878f-de3262ab8c64"),
+                    description = "Offers a JPA-Conform Database",
+                    tags = listOf("relational", "sql"),
+                    requires = null,
+                    bindable = true,
+                    instancesRetrievable = false,
+                    bindingsRetrievable = false,
+                    allowContextUpdates = null,
+                    metadata = null,
+                    dashboardClient = null,
+                    planUpdateable = null,
+                    plans = ServicePlan.getInstances()
+            )
+            list.add(jpaOffering)
+            return list
+        }
+    }
 }

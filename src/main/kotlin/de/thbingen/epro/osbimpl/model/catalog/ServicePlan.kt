@@ -20,4 +20,48 @@ data class ServicePlan(
         name.assertIfPresent(String::isNotEmpty)
         description.assertIfPresent(String::isNotEmpty)
     }
+
+    companion object {
+        val list = mutableListOf<ServicePlan>()
+
+        fun getInstances(): List<ServicePlan> {
+            if (list.isEmpty()) {
+                val small = ServicePlan(UUID.fromString("82420c0f-f757-409f-80f4-40b633666f59"),
+                        "Small",
+                        "einzelner kleiner Container mit niedrigen Ressourcen",
+                        null,
+                        null,
+                        null,
+                        false,
+                        null,
+                        null,
+                        null)
+
+                val standard = ServicePlan(UUID.fromString("648bf863-d5f7-4501-af14-da092ac6833a"),
+                        "Standard",
+                        "einzelner Container mit vielen Ressourcen",
+                        null,
+                        null,
+                        null,
+                        false,
+                        null,
+                        null,
+                        null)
+
+                val cluster = ServicePlan(UUID.fromString("84a0c934-a7dc-4713-b5d0-83892b2e898b"),
+                        "Cluster",
+                        "Cluster an Containern",
+                        null,
+                        null,
+                        null,
+                        false,
+                        null,
+                        null,
+                        null)
+
+                list.addAll(mutableListOf(small, standard, cluster))
+            }
+            return list
+        }
+    }
 }
